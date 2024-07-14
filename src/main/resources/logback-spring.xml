@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <fieldNames>
+                <timestamp>timestamp</timestamp>
+                <message>message</message>
+            </fieldNames>
+            <customFields>{"appname":"your-application-name"}</customFields> <!-- Optional: add any custom fields here -->
+            <timeZone>Asia/Jakarta</timeZone>
+            <pattern>[%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="jsonLogger" additivity="false" level="DEBUG">
+        <appender-ref ref="consoleAppender"/>
+    </logger>
+
+    <root level="INFO">
+        <appender-ref ref="consoleAppender"/>
+    </root>
+</configuration>
